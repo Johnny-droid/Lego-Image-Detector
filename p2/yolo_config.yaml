@@ -2,5 +2,4 @@ names:
 - lego
 nc: 1
 train: images/train
-test: images/test
 val: images/valid
