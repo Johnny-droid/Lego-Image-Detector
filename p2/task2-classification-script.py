@@ -6,15 +6,15 @@ from task2_scripts.Models import *
 from task2_scripts.Dataset import *
 from task2_scripts.Epochs import *
 
-DATASET_SET_LIMIT = True # Set to False to use the full dataset
+DATASET_SET_LIMIT = False # Set to False to use the full dataset
 DATASET_SIZE = 150
 DRIVE_ROOT_DIR = ""
 BATCH_SIZE = 32
 NUM_WORKERS = 8
 NUM_EPOCHS = 5
 
-MODEL_NAME = "cnn"
-MODEL = ConvolutionalNeuralNetwork()
+MODEL_NAME = "cnn-classifier" # "vgg16-classifier" # "resnet18-classifier"
+MODEL = ConvolutionalNeuralNetworkClassifier() # VGG16Classifier() # ResNet18Classifier()
 LOSS_FN = nn.CrossEntropyLoss()
 OPTIMIZER = torch.optim.Adam(MODEL.parameters(), lr=0.01)
 

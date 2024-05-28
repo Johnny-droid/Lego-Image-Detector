@@ -6,15 +6,15 @@ from task2_scripts.Models import *
 from task2_scripts.Dataset import *
 from task2_scripts.Epochs import *
 
-DATASET_SET_LIMIT = True # Set to False to use the full dataset
+DATASET_SET_LIMIT = False # Set to False to use the full dataset
 DATASET_SIZE = 50
 DRIVE_ROOT_DIR = ""
 BATCH_SIZE = 32
 NUM_WORKERS = 8
 NUM_EPOCHS = 3
 
-MODEL_NAME = "cnn"
-MODEL = VGG16Regression()
+MODEL_NAME = "cnn-regression" # "vgg16-regression" # "resnet18-regression"
+MODEL = ConvolutionalNeuralNetworkRegression() # VGG16Regression() # ResNet18Regression()
 LOSS_FN = nn.MSELoss()
 OPTIMIZER = torch.optim.SGD(MODEL.parameters(), lr=0.0001)
 

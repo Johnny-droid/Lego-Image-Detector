@@ -4,9 +4,9 @@ from torch import nn
 from torchvision import models
 np.random.seed(42)
 
-class ConvolutionalNeuralNetwork(nn.Module):
+class ConvolutionalNeuralNetworkClassifier(nn.Module):
     def __init__(self):
-        super(ConvolutionalNeuralNetwork, self).__init__()
+        super(ConvolutionalNeuralNetworkClassifier, self).__init__()
         self.pool_size = 2
         self.nb_filters = 32
         self.kernel_size = 3
@@ -35,7 +35,36 @@ class ConvolutionalNeuralNetwork(nn.Module):
         logits = self.layers(x)
         return logits
 
+class ConvolutionalNeuralNetworkRegression(nn.Module):
+    def __init__(self):
+        super(ConvolutionalNeuralNetworkRegression, self).__init__()
+        self.pool_size = 2
+        self.nb_filters = 32
+        self.kernel_size = 3
 
+        self.layers = nn.Sequential(
+            nn.Conv2d(3, self.nb_filters, self.kernel_size),
+            nn.ReLU(),
+            nn.Conv2d(self.nb_filters, self.nb_filters, self.kernel_size),
+            nn.ReLU(),
+            nn.MaxPool2d(self.pool_size),
+            nn.Dropout(0.25),
+            nn.Conv2d(self.nb_filters, self.nb_filters * 2, self.kernel_size),
+            nn.ReLU(),
+            nn.Conv2d(self.nb_filters * 2, self.nb_filters * 2, self.kernel_size),
+            nn.ReLU(),
+            nn.MaxPool2d(self.pool_size),
+            nn.Dropout(0.25),
+            nn.Flatten(),
+            nn.Linear(179776, 512),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(512, 1)  # we have 1 value to predict
+        )
+
+    def forward(self, x):
+        logits = self.layers(x)
+        return logits
 
 class VGG16Classifier(nn.Module):
     def __init__(self):
@@ -60,6 +89,15 @@ class ResNet18Classifier(nn.Module):
         super(ResNet18Classifier, self).__init__()
         self.resnet = models.resnet18(pretrained=True)
         self.resnet.fc = nn.Linear(512, 32)
+
+    def forward(self, x):
+        return self.resnet(x)
+    
+class ResNet18Regression(nn.Module):
+    def __init__(self):
+        super(ResNet18Regression, self).__init__()
+        self.resnet = models.resnet18(pretrained=True)
+        self.resnet.fc = nn.Linear(512, 1)
 
     def forward(self, x):
         return self.resnet(x)
