@@ -46,6 +46,14 @@ class VGG16Classifier(nn.Module):
     def forward(self, x):
         return self.vgg(x)
     
+class VGG16Regression(nn.Module):
+    def __init__(self):
+        super(VGG16Regression, self).__init__()
+        self.vgg = models.vgg16(pretrained=True)
+        self.vgg.classifier[6] = nn.Linear(4096, 1)
+
+    def forward(self, x):
+        return self.vgg(x)
 
 class ResNet18Classifier(nn.Module):
     def __init__(self):

@@ -37,7 +37,7 @@ loss_fn = LOSS_FN
 optimizer = OPTIMIZER
 
 # Training
-train_history, val_history = train(model, MODEL_NAME, NUM_EPOCHS, train_dataloader, validation_dataloader, loss_fn, optimizer, DRIVE_ROOT_DIR, device)
+train_history, val_history = train_classification(model, MODEL_NAME, NUM_EPOCHS, train_dataloader, validation_dataloader, loss_fn, optimizer, DRIVE_ROOT_DIR, device)
 plotTrainingHistory(train_history, val_history, stat='accuracy')
 
 # Test model
