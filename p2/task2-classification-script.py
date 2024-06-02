@@ -17,7 +17,7 @@ if __name__ == "__main__":
     MODEL_NAME =  "vgg16-classifier" # "cnn-classifier"# "resnet18-classifier"
     MODEL = VGG16Classifier()  #ConvolutionalNeuralNetworkClassifier()  # ResNet18Classifier()
     LOSS_FN = nn.CrossEntropyLoss()
-    OPTIMIZER = torch.optim.Adam(MODEL.parameters(), lr=0.01)
+    OPTIMIZER = torch.optim.Adam(MODEL.parameters(), lr=0.0001)
 
     try:
         folder_name = DRIVE_ROOT_DIR + "models"
