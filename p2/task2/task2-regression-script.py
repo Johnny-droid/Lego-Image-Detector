@@ -9,10 +9,10 @@ from task2_scripts.Epochs import *
 if __name__ == "__main__":
     DATASET_SET_LIMIT = False # Set to False to use the full dataset
     DATASET_SIZE = 50
-    DRIVE_ROOT_DIR = ""
+    DRIVE_ROOT_DIR = "../"
     BATCH_SIZE = 32
     NUM_WORKERS = 8
-    NUM_EPOCHS = 3
+    NUM_EPOCHS = 50
 
     MODEL_NAME = "cnn-regression" # "vgg16-regression" # "resnet18-regression"
     MODEL = ConvolutionalNeuralNetworkRegression() # VGG16Regression() # ResNet18Regression()
@@ -20,7 +20,7 @@ if __name__ == "__main__":
     OPTIMIZER = torch.optim.SGD(MODEL.parameters(), lr=0.0001)
 
     try:
-        folder_name = DRIVE_ROOT_DIR + "models"
+        folder_name = "models"
         os.mkdir(folder_name)
     except FileExistsError:
         pass
@@ -38,12 +38,12 @@ if __name__ == "__main__":
     optimizer = OPTIMIZER
 
     # Training
-    train_history, val_history = train_regression(model, MODEL_NAME, NUM_EPOCHS, train_dataloader, validation_dataloader, loss_fn, optimizer, DRIVE_ROOT_DIR, device)
+    train_history, val_history = train_regression(model, MODEL_NAME, NUM_EPOCHS, train_dataloader, validation_dataloader, loss_fn, optimizer, "", device)
     plotTrainingHistory(train_history, val_history, stat='mse')
 
     # Test model
     best_model = MODEL.to(device)
-    checkpoint = torch.load(DRIVE_ROOT_DIR + "models/" + MODEL_NAME + "_best_model.pth")
+    checkpoint = torch.load("models/" + MODEL_NAME + "_best_model.pth")
     best_model.load_state_dict(checkpoint['model'])
 
     preds, labels = [], []
