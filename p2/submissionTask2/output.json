@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "file_name": "input/0.jpg",
+      "num_detections": 1
+    },
+    {
+      "file_name": "input/1_1.jpg",
+      "num_detections": 1
+    },
+    {
+      "file_name": "input/1_2.jpg",
+      "num_detections": 1
+    },
+    {
+      "file_name": "input/1_3.jpg",
+      "num_detections": 1
+    },
+    {
+      "file_name": "input/1_4.jpg",
+      "num_detections": 1
+    },
+    {
+      "file_name": "input/11.jpg",
+      "num_detections": 8
+    },
+    {
+      "file_name": "input/37.jpg",
+      "num_detections": 4
+    },
+    {
+      "file_name": "input/39.jpg",
+      "num_detections": 5
+    }
+  ]
+}
