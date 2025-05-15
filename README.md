@@ -1,5 +1,8 @@
 # Computer Vision Project
 
+- In [Project 1](p1/final_report.pdf) you can check the project report
+- In Project 2 you can check the notebooks for [task 2](p2/task2/task2.ipynb) and [task 3](p2/task3/task3.ipynb)
+
 ## Group Members
 
 |      Name      | Student Number |
